@@ -1,0 +1,1088 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@300;700&display=swap');
+@import "tailwindcss";
+
+/* ============================================================
+   MARALTO INGÉNIERIE — DESIGN SYSTEM v2.0
+   Manual de Identidade Visual — Edição Definitiva
+   ============================================================ */
+
+:root {
+  /* --- 1. SUPERFÍCIES OCEÂNICAS (Zero Degradês) --- */
+  --bg-foam:             #EEF2F3;  /* Névoa Marítima — 65% do layout */
+  --bg-abyssal:          #08131A;  /* Fossa Abissal — 25% do layout */
+  --bg-abyssal-elevated: #0D1D26;  /* Rocha Abissal — painéis internos escuros */
+
+  /* --- 1b. COLUNA DE ÁGUA OCEÂNICA (gradiente de profundidade) --- */
+  --ocean-surface:  #08131A;  /* 0m   — Superfície noturna (Hero) */
+  --ocean-shallow:  #071628;  /* 120m — Zona Eufótica (Cases) */
+  --ocean-mid:      #05101E;  /* 350m — Zona Mesopelágica (Evolution) */
+  --ocean-manifesto:#040D18;  /* 500m — Manifesto Interlude */
+  --ocean-deep:     #030B15;  /* 700m — Zona Batial (Stack) */
+  --ocean-abyssal:  #02080E;  /* 950m — Zona Abissal (Footer) */
+
+  /* Elevação de painéis internos por zona */
+  --ocean-shallow-elevated:  #0A1E35;
+  --ocean-mid-elevated:      #071628;
+  --ocean-deep-elevated:     #05101E;
+  --ocean-abyssal-elevated:  #040D18;
+
+  /* Hairlines por zona */
+  --hairline-shallow:  rgba(88, 139, 158, 0.18);
+  --hairline-mid:      rgba(88, 139, 158, 0.14);
+  --hairline-deep:     rgba(88, 139, 158, 0.10);
+  --hairline-abyssal:  rgba(88, 139, 158, 0.07);
+
+  /* --- 2. TIPOGRAFIA & HIERARQUIA --- */
+  --text-primary-on-light:    #08131A;
+  --text-secondary-on-light:  #52656E;
+  --text-primary-on-dark:     #EEF2F3;
+  --text-secondary-on-dark:   #94ADB8;
+
+  /* --- 3. ACENTOS TÉCNICOS (2% do layout) --- */
+  --accent-current:   #165B75;  /* Azul Correnteza — labels no claro */
+  --accent-pelagic:   #588B9E;  /* Correnteza Pelágica — labels no escuro */
+
+  /* --- 4. CONTRASTE INSTRUMENTAL ÂMBAR (1% do layout) --- */
+  --signal-amber:      #C85A28;  /* Âmbar de Sonda — hover no claro */
+  --signal-amber-dark: #E0703C;  /* Âmbar Luminoso — hover no escuro */
+
+  /* --- 5. FIOS TÉCNICOS DE PRECISÃO (1px hairlines) --- */
+  --hairline-light: #CBD5D8;
+  --hairline-dark:  #1A2C38;
+
+  /* --- 6. FAMÍLIAS TIPOGRÁFICAS --- */
+  --font-sans:  'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:  'JetBrains Mono', monospace;
+  --font-brand: 'Montserrat', sans-serif;
+
+  /* --- 7. FÍSICA DE MOVIMENTO (Amortecimento Hidrodinâmico) --- */
+  --ease-ocean:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-gentle: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* --- 8. ESPAÇAMENTO BASE --- */
+  --section-py: 8rem;    /* 128px — respiro das seções */
+  --container-px: 2rem;  /* 32px — padding lateral */
+  --max-width: 72rem;    /* 1152px — largura máxima */
+}
+
+/* ============================================================
+   RESET & COMPORTAMENTO GLOBAL
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--ocean-abyssal);
+  color: var(--text-primary-on-dark);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--bg-abyssal);
+  color: var(--bg-foam);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ============================================================
+   UTILITÁRIOS MARALTO
+   ============================================================ */
+
+/* Label Técnico / Coordenada de Batimetria */
+.maralto-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem; /* 11px */
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-current);
+}
+
+.maralto-label-dark {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem; /* 11px */
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-pelagic);
+}
+
+/* Sub-coluna Técnica com Fio Superior de 1px */
+.maralto-spec-column {
+  border-top: 1px solid var(--hairline-light);
+  padding-top: 1.25rem;
+}
+
+.maralto-spec-column-dark {
+  border-top: 1px solid var(--hairline-dark);
+  padding-top: 1.25rem;
+}
+
+/* Ponto de Telemetria Naval — Âmbar Luminoso */
+.maralto-telemetry-dot {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: var(--signal-amber-dark);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.maralto-telemetry-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  background-color: var(--signal-amber-dark);
+  opacity: 0.25;
+  animation: pulse-amber 2s ease-in-out infinite;
+}
+
+@keyframes pulse-amber {
+  0%, 100% { transform: scale(1); opacity: 0.25; }
+  50%       { transform: scale(2); opacity: 0; }
+}
+
+/* Link de Ação Editorial — Acionamento em Âmbar */
+.maralto-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-primary-on-light);
+  border-bottom: 1px solid var(--text-primary-on-light);
+  padding-bottom: 0.25rem;
+  transition: border-color 0.3s var(--ease-ocean), color 0.3s var(--ease-ocean);
+}
+
+.maralto-link .arrow-icon {
+  display: inline-block;
+  transition: transform 0.35s var(--ease-ocean), color 0.3s var(--ease-ocean);
+}
+
+.maralto-link:hover {
+  border-bottom-color: var(--signal-amber);
+  color: var(--signal-amber);
+}
+
+.maralto-link:hover .arrow-icon {
+  transform: translate(3px, -3px);
+}
+
+/* Variação dark */
+.maralto-link-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-secondary-on-dark);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.25rem;
+  transition: color 0.3s var(--ease-ocean), border-color 0.3s var(--ease-ocean);
+}
+
+.maralto-link-dark .arrow-icon {
+  display: inline-block;
+  transition: transform 0.35s var(--ease-ocean), color 0.3s var(--ease-ocean);
+}
+
+.maralto-link-dark:hover {
+  color: var(--text-primary-on-dark);
+  border-bottom-color: var(--signal-amber-dark);
+}
+
+.maralto-link-dark:hover .arrow-icon {
+  color: var(--signal-amber-dark);
+  transform: translate(3px, -3px);
+}
+
+/* ============================================================
+   TIPOGRAFIA DE ESCALA
+   ============================================================ */
+
+.text-display {
+  font-family: var(--font-sans);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text-primary-on-dark);
+}
+
+.text-h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(2.25rem, 4vw, 3.75rem);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+
+.text-h2 {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.text-h3 {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.text-body-lg {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.text-body {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.text-body-sm {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   LAYOUT — CONTAINER & GRID
+   ============================================================ */
+
+.container-maralto {
+  width: 100%;
+  max-width: clamp(1040px, 88vw, 1480px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 3.5vw, 2.5rem);
+  padding-right: clamp(1.25rem, 3.5vw, 2.5rem);
+  position: relative;
+  z-index: 10;
+}
+
+/* ============================================================
+   RESPONSIVIDADE & LAYOUT MULTI-BREAKPOINT
+   Mobile (<768px), Tablet (768-1024px), Desktop (1024-1920px+)
+   ============================================================ */
+
+/* Hero Photo Responsiva — discreta no mobile, imponente no desktop */
+.hero-photo-wrapper {
+  position: absolute;
+  right: -5%;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.28;
+  max-height: 58vh;
+  transition: opacity 0.4s var(--ease-ocean);
+}
+
+@media (min-width: 1024px) {
+  .hero-photo-wrapper {
+    right: 0;
+    opacity: 1;
+    height: calc(100vh - 3.5rem);
+    max-height: min(860px, calc(100vh - 3.5rem));
+  }
+}
+
+@media (min-width: 1920px) {
+  .hero-photo-wrapper {
+    max-height: min(920px, calc(100vh - 3.5rem));
+  }
+}
+
+/* Imagem da foto do Hero */
+.hero-photo-img {
+  height: 100%;
+  max-height: 52vh;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom right;
+  display: block;
+  filter: drop-shadow(-20px 15px 35px rgba(0, 0, 0, 0.75));
+}
+
+@media (min-width: 1024px) {
+  .hero-photo-img {
+    max-height: min(820px, calc(100vh - 4rem));
+    max-width: clamp(500px, 46vw, 860px);
+    filter: drop-shadow(-25px 20px 45px rgba(0, 0, 0, 0.8));
+  }
+}
+
+@media (min-width: 1920px) {
+  .hero-photo-img {
+    max-height: min(880px, calc(100vh - 4.25rem));
+    max-width: 920px;
+  }
+}
+
+/* Badge sobreposta na foto */
+.hero-badge-overlay {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .hero-badge-overlay {
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+    bottom: clamp(1.5rem, 4vh, 3rem);
+    right: clamp(1.5rem, 4vw, 4.5rem);
+    pointer-events: auto;
+  }
+}
+
+/* Cases Spec Columns — 1 coluna no mobile, 3 colunas em tablet/desktop */
+.cases-spec-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .cases-spec-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* ============================================================
+   PROJECT CARDS — WIREFRAME ORDER & SOLID NON-NEON BUTTON
+   Order:
+   1. Top Row: Left = Photo/Iframe with single docked button
+               Right = Title Box (top) + Description Box (bottom)
+   2. Middle Row: 3 horizontal columns (Contexto, Arquitetura, Resultado)
+   3. Bottom Row: Badges lined up side by side
+   ============================================================ */
+
+.project-card-wrapper {
+  position: relative;
+  margin-top: 3.25rem;
+  width: 100%;
+  z-index: 10;
+}
+
+.project-corner-number {
+  position: absolute;
+  top: -3.2rem;
+  left: clamp(1.25rem, 2.5vw, 2.25rem);
+  font-family: var(--font-sans);
+  font-size: clamp(4.8rem, 7.5vw, 7rem);
+  font-weight: 900;
+  line-height: 0.85;
+  color: #d4541b;
+  letter-spacing: -0.05em;
+  z-index: 0; /* BEHIND the card */
+  pointer-events: none;
+  user-select: none;
+}
+
+.project-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: clamp(1.25rem, 2.5vw, 2.25rem);
+  border-radius: 16px;
+  background-color: rgba(4, 15, 27, 0.96); /* Opaque so number sits cleanly behind */
+  border: 1px solid rgba(80, 160, 240, 0.2);
+  backdrop-filter: blur(16px);
+  position: relative;
+  z-index: 1; /* IN FRONT of the number */
+  transition: border-color 0.3s ease;
+}
+
+.project-card-container:hover {
+  border-color: rgba(212, 84, 27, 0.35);
+}
+
+/* 1. Top Row: Two Columns */
+.project-top-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+  .project-top-row {
+    grid-template-columns: minmax(420px, 1.15fr) 1fr;
+  }
+}
+
+/* Top-Left: Preview Container */
+.project-preview-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #030a12;
+  border: 1px solid rgba(80, 160, 240, 0.2);
+  min-height: 280px;
+}
+
+.project-visual-viewport {
+  position: relative;
+  width: 100%;
+  height: clamp(260px, 28vw, 360px);
+  overflow: hidden;
+  background-color: #020810;
+}
+
+/* Sub-links / Multi-site bar */
+.project-subnav-bar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(3, 14, 26, 0.95);
+  border-bottom: 1px solid rgba(80, 160, 240, 0.12);
+  overflow-x: auto;
+}
+
+.project-subnav-btn {
+  padding: 0.3rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary-on-dark);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.project-subnav-btn.active {
+  border-color: #d4541b;
+  background-color: rgba(212, 84, 27, 0.2);
+  color: #ff915b;
+}
+
+/* Single Button Docked at Bottom-Left of Preview */
+.project-button-dock {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 10;
+}
+
+/* Button Ver de Perto — SOLID COLOR, NO NEON, NO EMOJIS */
+.btn-ver-de-perto-solid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.35rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.825rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: #d4541b;
+  color: #ffffff !important;
+  border: none;
+  box-shadow: none; /* Explicitly NO NEON */
+  transition: background-color 0.2s ease;
+}
+
+.btn-ver-de-perto-solid:hover {
+  background-color: #b54212;
+  color: #ffffff !important;
+  box-shadow: none; /* Explicitly NO NEON */
+}
+
+/* Top-Right: Details Column */
+.project-details-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+
+.project-title-box {
+  background-color: rgba(3, 14, 26, 0.65);
+  border: 1px solid var(--hairline-shallow);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.project-index-type {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  color: #d4541b;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.project-main-title {
+  font-size: clamp(1.4rem, 2vw, 1.85rem);
+  font-weight: 700;
+  color: var(--text-primary-on-dark);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.project-sub-title {
+  font-size: 0.9rem;
+  color: rgba(160, 200, 240, 0.8);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.project-description-box {
+  background-color: rgba(6, 20, 36, 0.55);
+  border: 1px solid rgba(80, 160, 240, 0.12);
+  border-radius: 8px;
+  padding: 1.15rem 1.25rem;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.project-description-text {
+  font-size: 0.925rem;
+  line-height: 1.7;
+  color: var(--text-primary-on-dark);
+  margin: 0;
+}
+
+/* 2. Middle Row: 3 Horizontal Columns */
+.project-specs-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .project-specs-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.project-spec-card {
+  background-color: rgba(3, 14, 26, 0.65);
+  border: 1px solid var(--hairline-shallow);
+  border-radius: 8px;
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.project-spec-title {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  color: rgba(180, 215, 245, 0.85);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0;
+  font-weight: 600;
+}
+
+.project-spec-content {
+  color: var(--text-secondary-on-dark);
+  font-size: 0.825rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 3. Bottom Row: Badges lined up side by side */
+.project-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(80, 160, 240, 0.1);
+  align-items: center;
+}
+
+.project-badge-pill {
+  padding: 0.3rem 0.75rem;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(80, 160, 240, 0.18);
+  color: var(--text-secondary-on-dark);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+/* Modal Split Layout: Gallery Left, Specs Right */
+.modal-split-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow-y: auto;
+  flex: 1;
+}
+
+@media (min-width: 960px) {
+  .modal-split-layout {
+    grid-template-columns: 1.18fr 1fr;
+    max-height: calc(90vh - 64px);
+    overflow-y: hidden;
+  }
+}
+
+
+/* Trajetória Timeline Entry — 1 coluna no mobile, 2 no tablet/desktop */
+.timeline-entry-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  padding-bottom: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .timeline-entry-grid {
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .timeline-entry-grid {
+    grid-template-columns: 200px 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* Footer Links Grid */
+.footer-links-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  margin-bottom: 5rem;
+}
+
+/* Footer Bottom Bar */
+.footer-bottom-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: flex-start;
+  border-top: 1px solid var(--hairline-dark);
+  padding-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .footer-bottom-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* ============================================================
+   SUPERFÍCIES DE SEÇÃO
+   ============================================================ */
+
+.section-light {
+  background-color: var(--bg-foam);
+  color: var(--text-primary-on-light);
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+}
+
+.section-dark {
+  background-color: var(--bg-abyssal);
+  color: var(--text-primary-on-dark);
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+}
+
+/* ============================================================
+   ZONAS DE PROFUNDIDADE OCEÂNICA — DEGRADÊS CONTÍNUOS E GRADUAIS
+   Cada seção conecta matematicamente na cor final da anterior
+   ============================================================ */
+
+/* 120m — Zona Eufótica (CasesSection) */
+.section-ocean-shallow {
+  background: linear-gradient(to bottom, #07192A 0%, #061423 50%, #05101C 100%);
+  color: var(--text-primary-on-dark);
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 350m — Zona Mesopelágica (EvolutionSection) */
+.section-ocean-mid {
+  background: linear-gradient(to bottom, #05101C 0%, #040D18 50%, #040B14 100%);
+  color: var(--text-primary-on-dark);
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 500m — Manifesto (InterludeSection) */
+.section-ocean-manifesto {
+  background: linear-gradient(to bottom, #040B14 0%, #030910 50%, #03080E 100%);
+  color: var(--text-primary-on-dark);
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 700m — Zona Batial (StackSection) */
+.section-ocean-deep {
+  background: linear-gradient(to bottom, #03080E 0%, #02060B 50%, #020509 100%);
+  color: var(--text-primary-on-dark);
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 950m — Zona Abissal (FooterSection) */
+.section-ocean-abyssal {
+  background: linear-gradient(to bottom, #020509 0%, #010407 50%, #010204 100%);
+  color: var(--text-primary-on-dark);
+  padding-top: var(--section-py);
+  padding-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============================================================
+   FIOS TÉCNICOS HORIZONTAIS (1px Hairlines)
+   ============================================================ */
+
+.hairline {
+  border: none;
+  border-top: 1px solid var(--hairline-light);
+}
+
+.hairline-dark {
+  border: none;
+  border-top: 1px solid var(--hairline-dark);
+}
+
+/* ============================================================
+   PARTÍCULAS CSS (Deep Sea Particles — sem JS)
+   ============================================================ */
+
+@keyframes float-particle {
+  0%   { transform: translateY(100vh) translateX(0px); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(-10vh) translateX(20px); opacity: 0; }
+}
+
+/* Ondas SVG — deslizamento horizontal contínuo em camadas */
+@keyframes wave-drift-front {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes wave-drift-mid {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes wave-drift-back {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Cardumes de peixe — entrada e saída laterais */
+@keyframes fish-swim-ltr {
+  0%   { transform: translateX(-15vw); }
+  100% { transform: translateX(115vw); }
+}
+
+@keyframes fish-swim-rtl {
+  0%   { transform: translateX(115vw); }
+  100% { transform: translateX(-15vw); }
+}
+
+/* Baleias Cachalotes — deriva de sono vertical no abismo */
+@keyframes whale-drift {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(0.8deg);
+  }
+}
+
+/* Medusa — pulsação rítmica do sino */
+@keyframes jellyfish-pulse {
+  0%, 100% { transform: scaleY(1)    scaleX(1);    opacity: 0.55; }
+  50%       { transform: scaleY(0.87) scaleX(1.07); opacity: 0.75; }
+}
+
+/* Estrela-do-mar — deriva lenta */
+@keyframes starfish-drift {
+  0%   { transform: rotate(0deg)  translateY(0px); }
+  33%  { transform: rotate(5deg)  translateY(-4px); }
+  66%  { transform: rotate(-4deg) translateY(3px); }
+  100% { transform: rotate(0deg)  translateY(0px); }
+}
+
+/* Bio-luminescência — brilho pulsante */
+@keyframes sea-glow {
+  0%, 100% { opacity: 0.25; filter: blur(0px); }
+  50%       { opacity: 0.65; filter: blur(1px); }
+}
+
+/* Algas Marinhas — 5 oscilações orgânicas e independentes */
+@keyframes kelp-sway-a {
+  0%, 100% { transform: rotate(-4deg) skewX(-2.5deg); }
+  50%       { transform: rotate(5deg)  skewX(3.5deg); }
+}
+
+@keyframes kelp-sway-b {
+  0%, 100% { transform: rotate(3.5deg) skewX(2deg); }
+  45%       { transform: rotate(-5deg) skewX(-3deg); }
+  75%       { transform: rotate(-1deg) skewX(-0.5deg); }
+}
+
+@keyframes kelp-sway-c {
+  0%, 100% { transform: rotate(-2.5deg) skewX(-1.5deg); }
+  55%       { transform: rotate(4deg)   skewX(2.5deg); }
+}
+
+@keyframes kelp-sway-d {
+  0%, 100% { transform: rotate(5.5deg) skewX(3.5deg); }
+  40%       { transform: rotate(-4.5deg) skewX(-3deg); }
+  70%       { transform: rotate(1deg) skewX(1deg); }
+}
+
+@keyframes kelp-sway-e {
+  0%, 100% { transform: rotate(-3deg) skewX(-2deg); }
+  50%       { transform: rotate(3.5deg) skewX(2.2deg); }
+}
+
+/* Classes de animação aplicáveis */
+.jellyfish-pulse { animation: jellyfish-pulse 3.2s ease-in-out infinite; }
+.starfish-drift  { animation: starfish-drift  8s   ease-in-out infinite; }
+.sea-glow        { animation: sea-glow        4s   ease-in-out infinite; }
+.kelp-strand     { animation: kelp-sway-a     6s   ease-in-out infinite; transform-origin: bottom center; }
+
+.kelp-sway-a     { animation: kelp-sway-a ease-in-out infinite; transform-origin: bottom center; }
+.kelp-sway-b     { animation: kelp-sway-b ease-in-out infinite; transform-origin: bottom center; }
+.kelp-sway-c     { animation: kelp-sway-c ease-in-out infinite; transform-origin: bottom center; }
+.kelp-sway-d     { animation: kelp-sway-d ease-in-out infinite; transform-origin: bottom center; }
+.kelp-sway-e     { animation: kelp-sway-e ease-in-out infinite; transform-origin: bottom center; }
+
+/* Acessibilidade — desativa animações pesadas */
+@media (prefers-reduced-motion: reduce) {
+  .fish-school,
+  .jellyfish-pulse,
+  .starfish-drift,
+  .sea-glow,
+  .kelp-strand,
+  [style*="wave-drift"] {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent-pelagic);
+  pointer-events: none;
+  animation: float-particle linear infinite;
+}
+
+/* ============================================================
+   NAVBAR LATERAL — PROFUNDÍMETRO
+   ============================================================ */
+
+.navbar-lateral {
+  position: fixed;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.navbar-lateral-line {
+  width: 1px;
+  flex: 1;
+  background-color: var(--hairline-dark);
+  min-height: 2rem;
+}
+
+.navbar-lateral-item {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem; /* 9px */
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-pelagic);
+  opacity: 0.4;
+  cursor: pointer;
+  transition: color 0.3s var(--ease-ocean), opacity 0.3s var(--ease-ocean);
+  padding: 0.5rem 0;
+  white-space: nowrap;
+}
+
+.navbar-lateral-item.active {
+  color: var(--signal-amber-dark);
+  opacity: 1;
+}
+
+.navbar-lateral-item:hover {
+  opacity: 0.8;
+}
+
+/* ============================================================
+   PANEL DE TELEMETRIA (Hero)
+   ============================================================ */
+
+.telemetry-panel {
+  border: 1px solid var(--hairline-dark);
+  background-color: var(--bg-abyssal-elevated);
+  font-family: var(--font-mono);
+  overflow: hidden;
+}
+
+.telemetry-panel-header {
+  border-bottom: 1px solid var(--hairline-dark);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.telemetry-panel-row {
+  border-bottom: 1px solid var(--hairline-dark);
+  padding: 0.625rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+}
+
+.telemetry-panel-row:last-child {
+  border-bottom: none;
+}
+
+.telemetry-key {
+  color: var(--accent-pelagic);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.telemetry-value {
+  color: var(--text-primary-on-dark);
+  letter-spacing: 0.08em;
+}
+
+.telemetry-value-amber {
+  color: var(--signal-amber-dark);
+  letter-spacing: 0.08em;
+}
+
+
+/* ============================================================
+   SCROLL INDICATOR
+   ============================================================ */
+
+@keyframes scroll-line {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+  50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0.3; }
+}
+
+.scroll-indicator-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--signal-amber-dark);
+  animation: scroll-line 2s var(--ease-ocean) infinite;
+}
+
+/* ============================================================
+   STACK TECNOLÓGICO — BENTO GRID & TELEMETRIA
+   ============================================================ */
+
+.stack-bento-card {
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stack-bento-card:hover {
+  border-color: rgba(212, 84, 27, 0.45) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5) !important;
+}
+
+.stack-pill-hover {
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.stack-pill-hover:hover {
+  transform: translateY(-1px);
+  border-color: rgba(212, 84, 27, 0.55) !important;
+  background-color: rgba(224, 112, 60, 0.14) !important;
+}
+
+.stack-filter-btn:hover {
+  border-color: rgba(212, 84, 27, 0.6) !important;
+  color: var(--text-primary-on-dark) !important;
+}
+
+@media (max-width: 1024px) {
+  .stack-bento-card {
+    grid-column: span 1 !important;
+  }
+}
+
