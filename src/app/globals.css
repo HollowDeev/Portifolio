@@ -691,12 +691,82 @@ a {
   }
 }
 
-/* Footer Links Grid */
-.footer-links-grid {
+/* Contact Cards Grid — Visual & Destacado */
+.contact-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-bottom: 3.5rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .contact-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.contact-action-card {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  gap: clamp(2.5rem, 6vw, 5rem);
-  margin-bottom: 5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.75rem;
+  border-radius: 16px;
+  background: rgba(6, 18, 30, 0.75);
+  border: 1px solid rgba(88, 139, 158, 0.22);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  text-decoration: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.contact-action-card:hover {
+  transform: translateY(-4px);
+  background: rgba(10, 26, 42, 0.9);
+}
+
+.contact-action-card.card-whatsapp:hover {
+  border-color: rgba(37, 211, 102, 0.6);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(37, 211, 102, 0.18);
+}
+
+.contact-action-card.card-linkedin:hover {
+  border-color: rgba(10, 102, 194, 0.65);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(10, 102, 194, 0.22);
+}
+
+.contact-action-card.card-github:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 255, 255, 0.14);
+}
+
+.contact-action-card.card-email:hover {
+  border-color: rgba(224, 112, 60, 0.65);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(224, 112, 60, 0.2);
+}
+
+.contact-quick-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 14px;
+  background: rgba(6, 18, 30, 0.5);
+  border: 1px solid rgba(88, 139, 158, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 768px) {
+  .contact-quick-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 /* Footer Bottom Bar */
