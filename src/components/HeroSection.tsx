@@ -105,7 +105,7 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           style={{ display: "flex", alignItems: "center" }}
         >
           <img
@@ -124,7 +124,7 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
         >
           <span
@@ -179,7 +179,7 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
           >
             <span className="maralto-telemetry-dot" />
@@ -190,7 +190,7 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.7, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 0.25, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{ padding: "0.15rem 0" }}
           >
             <img
@@ -210,7 +210,7 @@ export default function HeroSection() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.9, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 0.35, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             style={{
               fontFamily: "var(--font-sans)",
               fontWeight: 600,
@@ -258,7 +258,7 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 0.45, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -322,7 +322,7 @@ export default function HeroSection() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 0.55, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="text-body"
             style={{
               color: "var(--text-secondary-on-dark)",
@@ -339,7 +339,7 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 2.4, duration: 0.8 }}
+            transition={{ delay: 0.65, duration: 0.7 }}
             style={{
               display: "flex",
               alignItems: "center",
@@ -394,7 +394,7 @@ export default function HeroSection() {
         className="hero-photo-wrapper hidden lg:flex"
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1.8, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ delay: 0.3, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
         style={{
           y: photoY,
         }}
@@ -442,7 +442,7 @@ export default function HeroSection() {
             className="hero-badge-overlay"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.3, duration: 0.8 }}
+            transition={{ delay: 0.6, duration: 0.7 }}
             style={{
               gap: "0.55rem",
               padding: "0.5rem 1.15rem",
@@ -473,7 +473,7 @@ export default function HeroSection() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.6, duration: 0.8 }}
+        transition={{ delay: 0.75, duration: 0.7 }}
         style={{
           position: "absolute",
           bottom: "1rem",

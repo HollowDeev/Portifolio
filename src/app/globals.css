@@ -341,6 +341,12 @@ a {
   position: relative;
 }
 
+@media (min-width: 1024px) {
+  .hero-mobile-photo-box {
+    display: none !important;
+  }
+}
+
 .hero-mobile-photo-inner {
   position: relative;
   width: 220px;
