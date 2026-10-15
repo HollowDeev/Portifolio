@@ -23,9 +23,9 @@ export default function ProjectCard({
     project.liveUrl || (project.subLinks && project.subLinks[0]?.url) || ""
   );
 
-  // Agro Preciosa view mode switch ('loja' vs 'dashboard')
-  const [agroViewMode, setAgroViewMode] = useState<"loja" | "dashboard">(
-    project.hasDashboardPhoto ? "loja" : "loja"
+  // View mode switch: supports live iframe vs photo gallery toggle
+  const [viewMode, setViewMode] = useState<"live" | "photos">(
+    project.liveUrl ? "live" : "photos"
   );
 
   const isUrlProject = Boolean(project.liveUrl);
@@ -37,9 +37,9 @@ export default function ProjectCard({
   const currentLiveUrl = selectedUrl || project.liveUrl || "";
 
   // Button text determination matching wireframe
-  const isCurrentlyUrl = isUrlProject && agroViewMode === "loja";
+  const isCurrentlyUrl = isUrlProject && viewMode === "live";
   const buttonLabel = isCurrentlyUrl
-    ? "VER DE PERTO | Acessar Site"
+    ? (project.id === "industrial-pro" ? "TESTAR SISTEMA AO VIVO ↗" : "VER DE PERTO | Acessar Site")
     : "VER DE PERTO | Galeria de Fotos";
 
   return (
@@ -81,18 +81,36 @@ export default function ProjectCard({
             </div>
           )}
 
+          {/* Subnav switcher for IndustrialPRO (Ambiente de Testes vs Galeria) */}
+          {project.id === "industrial-pro" && project.liveUrl && project.photos && (
+            <div className="project-subnav-bar">
+              <button
+                onClick={() => setViewMode("live")}
+                className={`project-subnav-btn ${viewMode === "live" ? "active" : ""}`}
+              >
+                ⚡ Ambiente de Testes (Ao Vivo)
+              </button>
+              <button
+                onClick={() => setViewMode("photos")}
+                className={`project-subnav-btn ${viewMode === "photos" ? "active" : ""}`}
+              >
+                📷 Galeria de Prints ({project.photos.length})
+              </button>
+            </div>
+          )}
+
           {/* Dual-part toggle for Agro Preciosa (Loja Online vs Dashboard) */}
           {project.hasDashboardPhoto && (
             <div className="project-subnav-bar">
               <button
-                onClick={() => setAgroViewMode("loja")}
-                className={`project-subnav-btn ${agroViewMode === "loja" ? "active" : ""}`}
+                onClick={() => setViewMode("live")}
+                className={`project-subnav-btn ${viewMode === "live" ? "active" : ""}`}
               >
                 Loja Online (Site)
               </button>
               <button
-                onClick={() => setAgroViewMode("dashboard")}
-                className={`project-subnav-btn ${agroViewMode === "dashboard" ? "active" : ""}`}
+                onClick={() => setViewMode("photos")}
+                className={`project-subnav-btn ${viewMode === "photos" ? "active" : ""}`}
               >
                 Dashboard (Galeria)
               </button>
@@ -127,11 +145,7 @@ export default function ProjectCard({
               >
                 {primaryPhoto ? (
                   <Image
-                    src={
-                      agroViewMode === "dashboard" && project.photos
-                        ? project.photos[0].url
-                        : primaryPhoto.url
-                    }
+                    src={primaryPhoto.url}
                     alt={project.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"

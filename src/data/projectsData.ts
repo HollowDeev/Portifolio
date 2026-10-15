@@ -37,20 +37,21 @@ export const PROJECTS_DATA: ProjectItem[] = [
     type: "SISTEMA ERP INDUSTRIAL & PCP",
     subtitle: "Controle de fábrica, rastreamento de lote e custo real",
     directDescription:
-      "Sistema feito sob medida para o chão de fábrica de uma indústria de postes poliméricos. Ele acompanha cada lote de matéria-prima desde a entrega do fornecedor até o poste pronto, calcula o custo exato de produção e organiza o estoque de ponta a ponta sem complicação.",
+      "Sistema feito sob medida para o chão de fábrica de uma indústria de postes poliméricos. Ele acompanha cada lote de matéria-prima desde a entrega do fornecedor até o poste pronto, calcula o custo exato de produção e organiza o estoque de ponta a ponta. Conta com ambiente online aberto para testes práticos e visualização guiada para avaliadores.",
+    liveUrl: "https://industrial-pro.vercel.app/",
     specs: {
       contexto:
         "A fábrica usava papéis e planilhas confusas para controlar materiais e nunca sabia o custo exato para produzir cada poste.",
       arquitetura:
         "Criei um sistema que acompanha a matéria-prima do caminhão até a entrega, calcula as receitas de fabricação e organiza o estoque de forma automática.",
       resultado:
-        "Fim dos erros manuais, controle de cada lote na fábrica e custo exato de produção calculado na hora.",
+        "Fim dos erros manuais, controle de cada lote na fábrica e custo exato de produção calculado na hora. Ambiente aberto disponível para testes e homologação.",
     },
     tags: [
+      "Ambiente de Testes",
       "ERP Industrial",
       "Rastreamento de Lotes",
       "Fórmulas de Produção",
-      "Controle de Compras",
       "Cálculo de Custos",
     ],
     photos: [
