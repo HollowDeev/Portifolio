@@ -145,7 +145,7 @@ export default function NavbarLateral() {
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       aria-label="Régua Batimétrica de Profundidade"
-      className="hidden md:flex"
+      className="navbar-lateral-ruler hidden lg:flex"
       style={{
         position: "fixed",
         left: "1.75rem",

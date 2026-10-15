@@ -211,6 +211,7 @@ export default function RealisticKelp() {
   return (
     <div
       aria-hidden="true"
+      className="realistic-kelp-container"
       style={{
         position: "absolute",
         bottom: 0,

@@ -81,7 +81,7 @@ export default function CasesSection() {
       {/* Cardumes de peixe no fundo */}
       <FishSchool />
 
-      <div className="container-maralto" style={{ position: "relative", zIndex: 10 }}>
+      <div className="container-maralto cases-container" style={{ position: "relative", zIndex: 10 }}>
         <div
           style={{
             maxWidth: "1380px",
@@ -125,7 +125,7 @@ export default function CasesSection() {
                   justifyContent: "space-between",
                   alignItems: "flex-end",
                   flexWrap: "wrap",
-                  gap: "2rem",
+                  gap: "1.75rem",
                 }}
               >
                 <div>
@@ -154,11 +154,12 @@ export default function CasesSection() {
                 </div>
 
                 <div
+                  className="cases-stats-bar"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "2.5rem",
-                    padding: "0.75rem 1.5rem",
+                    gap: "1.75rem",
+                    padding: "0.75rem 1.25rem",
                     backgroundColor: "rgba(3, 14, 26, 0.75)",
                     borderRadius: "10px",
                     border: "1px solid rgba(80, 160, 240, 0.18)",

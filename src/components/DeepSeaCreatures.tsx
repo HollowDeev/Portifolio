@@ -16,6 +16,7 @@ import { motion } from "framer-motion";
 function Jellyfish() {
   return (
     <motion.div
+      className="deep-sea-jellyfish hidden lg:block"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}

@@ -122,6 +122,7 @@ export default function FooterSection() {
       className="section-ocean-abyssal"
       style={{
         position: "relative",
+        paddingBottom: "4.5rem",
       }}
     >
       {/* Chão oceânico abissal: relevo rochoso */}
@@ -347,13 +348,13 @@ export default function FooterSection() {
               >
                 LINHA DIRETA DE ATENDIMENTO
               </span>
-              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1.25rem" }}>
+              <div className="contact-quick-links">
                 <a
                   href="tel:+5519995799224"
                   style={{
                     fontFamily: "var(--font-sans)",
                     fontWeight: 600,
-                    fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
+                    fontSize: "clamp(1.05rem, 2vw, 1.35rem)",
                     color: "var(--text-primary-on-dark)",
                     display: "inline-flex",
                     alignItems: "center",
@@ -366,15 +367,16 @@ export default function FooterSection() {
                   <PhoneIcon size={18} />
                   +55 (19) 99579-9224
                 </a>
-                <span style={{ color: "rgba(88, 139, 158, 0.4)", display: "inline-block" }}>•</span>
+                <span className="hidden sm:inline" style={{ color: "rgba(88, 139, 158, 0.4)" }}>•</span>
                 <a
                   href="mailto:thaua19felipe@gmail.com"
                   style={{
                     fontFamily: "var(--font-sans)",
                     fontWeight: 400,
-                    fontSize: "clamp(0.95rem, 1.8vw, 1.15rem)",
+                    fontSize: "clamp(0.9rem, 1.8vw, 1.15rem)",
                     color: "var(--text-secondary-on-dark)",
                     transition: "color 0.25s ease",
+                    wordBreak: "break-all",
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "var(--signal-amber-dark)")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary-on-dark)")}

@@ -37,12 +37,10 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       id="hero"
+      className="hero-section-wrapper"
       style={{
         position: "relative",
         width: "100%",
-        height: "100vh",
-        minHeight: "100vh",
-        maxHeight: "100vh",
         background: "linear-gradient(to bottom, #06121C 0%, #081726 50%, #0A1E30 80%, #0C263C 100%)",
         display: "flex",
         flexDirection: "column",
@@ -96,7 +94,7 @@ export default function HeroSection() {
           left: 0,
           right: 0,
           borderBottom: "1px solid var(--hairline-dark)",
-          padding: "0.875rem clamp(1.25rem, 3.5vw, 2.5rem)",
+          padding: "0.875rem clamp(1rem, 3.5vw, 2.5rem)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -114,7 +112,7 @@ export default function HeroSection() {
             src="/Logo_2_Horizontal_PNG.png"
             alt="Thauã Felipe — Engenheiro da Computação"
             style={{
-              height: "clamp(28px, 2.5vw, 36px)",
+              height: "clamp(26px, 2.5vw, 36px)",
               width: "auto",
               objectFit: "contain",
               display: "block",
@@ -127,7 +125,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}
+          style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
         >
           <span
             style={{
@@ -139,23 +137,23 @@ export default function HeroSection() {
               boxShadow: "0 0 8px #10B981",
             }}
           />
-          <span className="maralto-label-dark" style={{ opacity: 0.8, fontSize: "clamp(0.5625rem, 0.7vw, 0.6875rem)" }}>
+          <span className="maralto-label-dark" style={{ opacity: 0.85, fontSize: "clamp(0.6rem, 0.75vw, 0.6875rem)", whiteSpace: "nowrap" }}>
             DISPONÍVEL PARA PROJETOS
           </span>
-          <span style={{ color: "var(--hairline-dark)", margin: "0 0.15rem" }}>·</span>
-          <span className="maralto-label-dark" style={{ opacity: 0.5, fontSize: "clamp(0.5625rem, 0.7vw, 0.6875rem)" }}>
+          <span className="hidden sm:inline" style={{ color: "var(--hairline-dark)", margin: "0 0.15rem" }}>·</span>
+          <span className="maralto-label-dark hidden sm:inline" style={{ opacity: 0.5, fontSize: "clamp(0.5625rem, 0.7vw, 0.6875rem)", whiteSpace: "nowrap" }}>
             PORTFÓLIO 2026
           </span>
         </motion.div>
       </div>
 
-      {/* ---- Main Hero Content (Contained inside 100vh) ---- */}
+      {/* ---- Main Hero Content ---- */}
       <div
+        className="hero-main-content-box"
         style={{
           flex: 1,
           display: "flex",
           alignItems: "center",
-          padding: "clamp(4.25rem, 8vh, 6rem) clamp(1.25rem, 3.5vw, 3.5rem) clamp(1rem, 2.5vh, 2rem) clamp(1.25rem, 5vw, 6.5rem)",
           maxWidth: "min(1760px, 94vw)",
           margin: "0 auto",
           width: "100%",
@@ -236,6 +234,25 @@ export default function HeroSection() {
               — Do conceito ao produto final
             </span>
           </motion.h1>
+
+          {/* Foto de Thauã para Telas Menores (< 1024px) — fluida no fluxo, nunca sobrepõe texto */}
+          <div className="hero-mobile-photo-box lg:hidden">
+            <div className="hero-mobile-photo-inner">
+              <div aria-hidden className="hero-mobile-photo-halo" />
+              <Image
+                src="/FotoPerfil_Estudio.png"
+                alt="Thauã Felipe — Engenheiro da computação"
+                width={360}
+                height={430}
+                priority
+                className="hero-mobile-photo-img"
+              />
+            </div>
+            <div className="hero-mobile-photo-badge">
+              <span className="maralto-telemetry-dot" />
+              <span>Engenheiro da Computação</span>
+            </div>
+          </div>
 
           {/* Card: Mais de 10 soluções desenvolvidas */}
           <motion.div
@@ -374,7 +391,7 @@ export default function HeroSection() {
 
       {/* === RIGHT PHOTO — Grande, imponente e responsiva === */}
       <motion.div
-        className="hero-photo-wrapper"
+        className="hero-photo-wrapper hidden lg:flex"
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.8, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}

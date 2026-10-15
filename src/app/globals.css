@@ -298,27 +298,117 @@ a {
    Mobile (<768px), Tablet (768-1024px), Desktop (1024-1920px+)
    ============================================================ */
 
-/* Hero Photo Responsiva — discreta no mobile, imponente no desktop */
-.hero-photo-wrapper {
-  position: absolute;
-  right: -5%;
-  bottom: 0;
+/* Hero Section Container Responsivo */
+.hero-section-wrapper {
+  min-height: 100vh;
+  height: auto;
+  padding-bottom: 3.5rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-section-wrapper {
+    height: 100vh;
+    max-height: 100vh;
+    padding-bottom: 0;
+  }
+}
+
+.hero-main-content-box {
+  padding: 5.25rem 1rem 2rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .hero-main-content-box {
+    padding: 5.5rem 1.75rem 2rem 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-main-content-box {
+    padding: clamp(4.25rem, 8vh, 6rem) clamp(1.25rem, 3.5vw, 3.5rem) clamp(1rem, 2.5vh, 2rem) clamp(1.25rem, 5vw, 6.5rem);
+  }
+}
+
+/* Foto de Perfil Fluida no Mobile — centralizada, nunca sobrepõe texto */
+.hero-mobile-photo-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0.75rem auto 1.25rem auto;
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+}
+
+.hero-mobile-photo-inner {
+  position: relative;
+  width: 220px;
+  height: 270px;
   display: flex;
   align-items: flex-end;
-  justify-content: flex-end;
+  justify-content: center;
+  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+.hero-mobile-photo-halo {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(22, 91, 117, 0.45) 0%, rgba(224, 112, 60, 0.12) 55%, transparent 70%);
+  filter: blur(28px);
   pointer-events: none;
-  z-index: 3;
-  opacity: 0.28;
-  max-height: 58vh;
-  transition: opacity 0.4s var(--ease-ocean);
+}
+
+.hero-mobile-photo-img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.75));
+}
+
+.hero-mobile-photo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  background-color: rgba(8, 19, 26, 0.92);
+  border: 1px solid var(--hairline-dark);
+  border-radius: 9999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-top: -8px;
+  position: relative;
+  z-index: 5;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-pelagic);
+}
+
+/* Hero Photo Desktop — visível ESTRITAMENTE a partir de 1024px */
+.hero-photo-wrapper {
+  display: none !important;
 }
 
 @media (min-width: 1024px) {
   .hero-photo-wrapper {
+    display: flex !important;
+    position: absolute;
     right: 0;
+    bottom: 0;
+    align-items: flex-end;
+    justify-content: flex-end;
+    pointer-events: none;
+    z-index: 3;
     opacity: 1;
     height: calc(100vh - 3.5rem);
     max-height: min(860px, calc(100vh - 3.5rem));
+    transition: opacity 0.4s var(--ease-ocean);
   }
 }
 
@@ -328,23 +418,16 @@ a {
   }
 }
 
-/* Imagem da foto do Hero */
+/* Imagem da foto do Hero no Desktop */
 .hero-photo-img {
   height: 100%;
-  max-height: 52vh;
+  max-height: min(820px, calc(100vh - 4rem));
+  max-width: clamp(500px, 46vw, 860px);
   width: auto;
   object-fit: contain;
   object-position: bottom right;
   display: block;
-  filter: drop-shadow(-20px 15px 35px rgba(0, 0, 0, 0.75));
-}
-
-@media (min-width: 1024px) {
-  .hero-photo-img {
-    max-height: min(820px, calc(100vh - 4rem));
-    max-width: clamp(500px, 46vw, 860px);
-    filter: drop-shadow(-25px 20px 45px rgba(0, 0, 0, 0.8));
-  }
+  filter: drop-shadow(-25px 20px 45px rgba(0, 0, 0, 0.8));
 }
 
 @media (min-width: 1920px) {
@@ -386,11 +469,6 @@ a {
 
 /* ============================================================
    PROJECT CARDS — WIREFRAME ORDER & SOLID NON-NEON BUTTON
-   Order:
-   1. Top Row: Left = Photo/Iframe with single docked button
-               Right = Title Box (top) + Description Box (bottom)
-   2. Middle Row: 3 horizontal columns (Contexto, Arquitetura, Resultado)
-   3. Bottom Row: Badges lined up side by side
    ============================================================ */
 
 .project-card-wrapper {
@@ -431,6 +509,123 @@ a {
 
 .project-card-container:hover {
   border-color: rgba(212, 84, 27, 0.35);
+}
+
+/* Mobile-First Project Cards: Largura Máxima & Zero Margens Desperdiçadas */
+@media (max-width: 767px) {
+  .cases-container {
+    padding-left: 0.35rem !important;
+    padding-right: 0.35rem !important;
+  }
+
+  .cases-stats-bar {
+    flex-wrap: wrap !important;
+    gap: 1.25rem !important;
+    width: 100% !important;
+  }
+
+  .project-card-wrapper {
+    margin-top: 2.15rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+
+  .project-corner-number {
+    top: -2.25rem !important;
+    left: 0.4rem !important;
+    font-size: 3.6rem !important;
+  }
+
+  .project-card-container {
+    padding: 0.75rem 0.55rem !important;
+    border-radius: 12px !important;
+    gap: 0.85rem !important;
+    width: 100% !important;
+  }
+
+  .project-preview-box {
+    min-height: auto !important;
+    border-radius: 8px !important;
+  }
+
+  .project-visual-viewport {
+    height: clamp(190px, 50vw, 240px) !important;
+  }
+
+  .project-button-dock {
+    bottom: 8px !important;
+    left: 8px !important;
+  }
+
+  .btn-ver-de-perto-solid {
+    padding: 0.55rem 0.85rem !important;
+    font-size: 0.725rem !important;
+  }
+
+  .project-top-row {
+    gap: 0.75rem !important;
+  }
+
+  .project-details-right {
+    gap: 0.65rem !important;
+  }
+
+  .project-title-box {
+    padding: 0.75rem 0.85rem !important;
+    border-radius: 6px !important;
+  }
+
+  .project-index-type {
+    font-size: 0.65rem !important;
+  }
+
+  .project-main-title {
+    font-size: 1.25rem !important;
+  }
+
+  .project-sub-title {
+    font-size: 0.825rem !important;
+  }
+
+  .project-description-box {
+    padding: 0.75rem 0.85rem !important;
+    border-radius: 6px !important;
+  }
+
+  .project-description-text {
+    font-size: 0.875rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .project-specs-row {
+    gap: 0.55rem !important;
+  }
+
+  .project-spec-card {
+    padding: 0.65rem 0.75rem !important;
+    gap: 0.25rem !important;
+    border-radius: 6px !important;
+  }
+
+  .project-spec-title {
+    font-size: 0.65rem !important;
+  }
+
+  .project-spec-content {
+    font-size: 0.8rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .project-badges-row {
+    gap: 0.35rem !important;
+    padding-top: 0.35rem !important;
+  }
+
+  .project-badge-pill {
+    padding: 0.22rem 0.55rem !important;
+    font-size: 0.65rem !important;
+  }
 }
 
 /* 1. Top Row: Two Columns */
@@ -766,6 +961,20 @@ a {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+  }
+}
+
+.contact-quick-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+@media (min-width: 640px) {
+  .contact-quick-links {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
   }
 }
 
@@ -1153,6 +1362,54 @@ a {
 @media (max-width: 1024px) {
   .stack-bento-card {
     grid-column: span 1 !important;
+  }
+}
+
+/* ============================================================
+   RESPONSIVIDADE GLOBAL MOBILE (< 1024px & < 768px)
+   ============================================================ */
+
+/* Altimeter / Lateral Ruler: Oculta no Mobile e Tablet para liberar 100% da largura útil */
+@media (max-width: 1023px) {
+  .navbar-lateral-ruler {
+    display: none !important;
+  }
+  
+  .deep-sea-jellyfish {
+    display: none !important;
+  }
+}
+
+/* Algas Marinhas Abissais: Altura contida no mobile para nunca poluir os dados de contato */
+.realistic-kelp-container {
+  height: 380px;
+}
+
+@media (max-width: 767px) {
+  .realistic-kelp-container {
+    height: 120px !important;
+    opacity: 0.3 !important;
+  }
+
+  .contact-cards-grid {
+    gap: 1rem !important;
+    margin-bottom: 2.25rem !important;
+  }
+
+  .contact-action-card {
+    padding: 1.25rem 1rem !important;
+    border-radius: 12px !important;
+  }
+
+  .contact-quick-bar {
+    padding: 1.25rem 1rem !important;
+    margin-bottom: 2.5rem !important;
+    gap: 1rem !important;
+  }
+
+  .footer-bottom-bar {
+    padding-top: 1.5rem !important;
+    padding-bottom: 3.5rem !important;
   }
 }
 
